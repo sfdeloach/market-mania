@@ -162,10 +162,6 @@ def goForLaunch():
     investments.append(investment(targetBuy))
     
     # Simulation loop
-    # TODO: need to change the philosophy of waiting until the investment is set before it is able to be
-    #       sold. Implement an ejection seat if the plane is crashing
-    #       print the simulation log to file
-    #       allow user to adjust the set and ejection rates
     for r in records:
         print(str(r.date) +':')
         print('  beginning   = ' + str(investments[-1].status))
@@ -248,6 +244,12 @@ def goForLaunch():
         print('Final:  ' + fToA(initialBalance, 2, '$'))
         print('- - - - - - - - - - - - - - - - - - - - -')
         
-    print(fToA(initialBalance + (initialBalance * (records[-1].close - records[1].close) / records[1].close), 2, '$'))
+    priceChange = records[-1].close - records[1].close
+    percentChange = priceChange / records[1].close
+    print('\nIf equity was held for the entire period: ')
+    print('  Initial price: ' + repr(records[1].close))
+    print('    Final price: ' + repr(records[-1].close))
+    print('       %-change: ' + fToA(percentChange, 3, '%'))
+    print('  Final balance: ' + fToA(percentChange * initialBalance + initialBalance, 2, '$'))
 
 goForLaunch() # Start
