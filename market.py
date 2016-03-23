@@ -230,18 +230,19 @@ def goForLaunch():
         print('  ending      = ' + str(investments[-1].status))
         print('- - - - - - - - - - - - - - - - - - - - -')
         
-    print('\nResults...')
+    print('\nInvestment results...')
     investNo = 1
+    movingBalance = initialBalance
     for i in investments:
         print('#' + repr(investNo))
         investNo += 1
-        print('Initial: ' + fToA(initialBalance, 2, '$'))
-        tempBalance = initialBalance - 14 + initialBalance * i.findROI()
+        print('Initial: ' + fToA(movingBalance, 2, '$'))
+        tempBalance = movingBalance - 14 + movingBalance * i.findROI()
         print(i)
-        change = tempBalance - initialBalance
+        change = tempBalance - movingBalance
         print('Change: ' + fToA(change, 2, '$'))
-        initialBalance = tempBalance
-        print('Final:  ' + fToA(initialBalance, 2, '$'))
+        movingBalance = tempBalance
+        print('Final:  ' + fToA(movingBalance, 2, '$'))
         print('- - - - - - - - - - - - - - - - - - - - -')
         
     priceChange = records[-1].close - records[1].close
