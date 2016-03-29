@@ -141,7 +141,7 @@ def start_simulation():
     """This is the main function for the program"""
     print('Market - Equity Trading Simulator')
     symbol = input('Enter symbol: ')
-    symbol += '.csv'
+    symbol = 'equities/' + symbol + '.csv'
     span = float(input('Enter span (in weeks): '))
     span_percent = float(input('Enter span percent (%): '))
     limit = float(input('Enter limit (%): '))
